@@ -100,8 +100,17 @@ else:
         else:
             print('cerebellar gm mask needed')
             exit(1)
+    elif args.ref_roi=='wm-subcort-gif3':
+        if args.ref_roi_mask:
+            ref_roi=args.ref_roi
+            ref_roi_mask_img = nib.load(args.ref_roi_mask)
+            ref_roi_mask_data = ref_roi_mask_img.get_fdata()
+            ref_roi_mask_int = np.array(ref_roi_mask_data,dtype = int)
+        else:
+            print('wm-subcort-gif3 mask needed')
+            exit(1)
     else:
-        print('only cereb or gm cereb supported')
+        print('only cereb, gm-cereb-clean and wm-subcort-gif3 supported')
         exit(1)
 
     
